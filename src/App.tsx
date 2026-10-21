@@ -1,11 +1,12 @@
-import { createSignal, onSettled, onCleanup, For, Show, type JSX } from 'solid-js';
-import JsonTool from './lib/components/JsonTool';
-import RegexTool from './lib/components/RegexTool';
-import ColourTool from './lib/components/ColourTool';
-import EdgeBenchmarkTool from './lib/components/benchmark/EdgeBenchmarkTool';
-import Base64Tool from './lib/components/Base64Tool';
-import { DEV_TOOLS } from './lib/data/tools';
-import './lib/components/ToolPanel.css';
+import { createSignal, onSettled, onCleanup, For, Show } from "solid-js";
+import type { JSX } from "@solidjs/web";
+import JsonTool from "./lib/components/JsonTool";
+import RegexTool from "./lib/components/RegexTool";
+import ColourTool from "./lib/components/ColourTool";
+import EdgeBenchmarkTool from "./lib/components/benchmark/EdgeBenchmarkTool";
+import Base64Tool from "./lib/components/Base64Tool";
+import { DEV_TOOLS } from "./lib/data/tools";
+import "./lib/components/ToolPanel.css";
 
 interface ToolCardProps {
   id: string;
@@ -18,16 +19,23 @@ interface ToolCardProps {
 
 function ToolCard(props: ToolCardProps) {
   return (
-    <section id={props.id} class="tool-section-wrapper" aria-label={props.title}>
+    <section
+      id={props.id}
+      class="tool-section-wrapper"
+      aria-label={props.title}
+    >
       <div class="tool-header-row">
         <div>
           <span
             class="tool-badge-pill mono"
-            style={{ color: props.color, 'border-color': props.color }}
+            style={{ color: props.color, "border-color": props.color }}
           >
             {props.badge}
           </span>
-          <h2 class="tool-title" style={{ 'margin-top': '0.5rem', color: props.color }}>
+          <h2
+            class="tool-title"
+            style={{ "margin-top": "0.5rem", color: props.color }}
+          >
             {props.title}
           </h2>
           <p class="tool-desc">{props.desc}</p>
@@ -38,7 +46,10 @@ function ToolCard(props: ToolCardProps) {
   );
 }
 
-function ToolsNav(props: { activeTab: () => string; onSelect: (id: string) => void }) {
+function ToolsNav(props: {
+  activeTab: () => string;
+  onSelect: (id: string) => void;
+}) {
   return (
     <header class="tools-nav" role="banner">
       <div class="tools-brand">
@@ -47,15 +58,17 @@ function ToolsNav(props: { activeTab: () => string; onSelect: (id: string) => vo
         </a>
         <div class="tools-title-group">
           <h1 class="tools-main-title">TOILLE TOOLS</h1>
-          <span class="tools-subtitle">DEV UTILITY SUITE // BROWSER-SIDE EXECUTION</span>
+          <span class="tools-subtitle">
+            DEV UTILITY SUITE // BROWSER-SIDE EXECUTION
+          </span>
         </div>
       </div>
 
       <nav class="tools-tabs" aria-label="Tool selection">
         <button
           type="button"
-          class={`tools-tab-btn ${props.activeTab() === 'all' ? 'active' : ''}`}
-          onClick={() => props.onSelect('all')}
+          class={`tools-tab-btn ${props.activeTab() === "all" ? "active" : ""}`}
+          onClick={() => props.onSelect("all")}
         >
           ✦ ALL TOOLS
         </button>
@@ -63,7 +76,7 @@ function ToolsNav(props: { activeTab: () => string; onSelect: (id: string) => vo
           {(tool) => (
             <button
               type="button"
-              class={`tools-tab-btn ${props.activeTab() === tool.id ? 'active' : ''}`}
+              class={`tools-tab-btn ${props.activeTab() === tool.id ? "active" : ""}`}
               onClick={() => props.onSelect(tool.id)}
             >
               <span>{tool.name}</span>
@@ -75,51 +88,52 @@ function ToolsNav(props: { activeTab: () => string; onSelect: (id: string) => vo
   );
 }
 
-const KNOWN_TABS = new Set(['json', 'regex', 'colour', 'edge', 'base64']);
+const KNOWN_TABS = new Set(["json", "regex", "colour", "edge", "base64"]);
 
 export default function App() {
-  const [activeTab, setActiveTab] = createSignal<string>('all');
+  const [activeTab, setActiveTab] = createSignal<string>("all");
 
   const updateFromHash = () => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
+    const hash = window.location.hash.replace("#", "").toLowerCase();
     if (KNOWN_TABS.has(hash)) {
       setActiveTab(hash);
       const el = document.getElementById(hash);
-      el?.scrollIntoView({ behavior: 'smooth' });
+      el?.scrollIntoView({ behavior: "smooth" });
     } else {
-      setActiveTab('all');
+      setActiveTab("all");
     }
   };
 
   onSettled(() => {
     updateFromHash();
-    window.addEventListener('hashchange', updateFromHash);
+    window.addEventListener("hashchange", updateFromHash);
   });
 
   onCleanup(() => {
-    window.removeEventListener('hashchange', updateFromHash);
+    window.removeEventListener("hashchange", updateFromHash);
   });
 
   const selectTab = (id: string) => {
     setActiveTab(id);
-    if (id === 'all') {
-      window.history.pushState(null, '', window.location.pathname);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === "all") {
+      window.history.pushState(null, "", window.location.pathname);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      window.history.pushState(null, '', `#${id}`);
+      window.history.pushState(null, "", `#${id}`);
       const el = document.getElementById(id);
-      el?.scrollIntoView({ behavior: 'smooth' });
+      el?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const isVisible = (tab: string) => activeTab() === 'all' || activeTab() === tab;
+  const isVisible = (tab: string) =>
+    activeTab() === "all" || activeTab() === tab;
 
   return (
     <div class="tools-shell">
       <ToolsNav activeTab={activeTab} onSelect={selectTab} />
 
       <main class="tools-content" role="main">
-        <Show when={isVisible('json')}>
+        <Show when={isVisible("json")}>
           <ToolCard
             id="json"
             badge="MODULE // JSON_LAB"
@@ -131,7 +145,7 @@ export default function App() {
           </ToolCard>
         </Show>
 
-        <Show when={isVisible('regex')}>
+        <Show when={isVisible("regex")}>
           <ToolCard
             id="regex"
             badge="MODULE // REGEX_LAB"
@@ -143,7 +157,7 @@ export default function App() {
           </ToolCard>
         </Show>
 
-        <Show when={isVisible('colour')}>
+        <Show when={isVisible("colour")}>
           <ToolCard
             id="colour"
             badge="MODULE // COLOUR_STUDIO"
@@ -155,7 +169,7 @@ export default function App() {
           </ToolCard>
         </Show>
 
-        <Show when={isVisible('edge')}>
+        <Show when={isVisible("edge")}>
           <ToolCard
             id="edge"
             badge="MODULE // EDGE_TELEMETRY"
@@ -167,7 +181,7 @@ export default function App() {
           </ToolCard>
         </Show>
 
-        <Show when={isVisible('base64')}>
+        <Show when={isVisible("base64")}>
           <ToolCard
             id="base64"
             badge="MODULE // ENCODE_LAB"
@@ -181,10 +195,12 @@ export default function App() {
       </main>
 
       <footer class="tool-footer" role="contentinfo">
-        <span class="mono">🔒 100% Client-Side Execution · Zero Remote Data Collection · Zero Ads</span>
         <span class="mono">
-          Engineered by{' '}
-          <a href="https://toille.uk" style={{ color: 'var(--blue)' }}>
+          🔒 100% Client-Side Execution · Zero Remote Data Collection · Zero Ads
+        </span>
+        <span class="mono">
+          Engineered by{" "}
+          <a href="https://toille.uk" style={{ color: "var(--blue)" }}>
             Elliot Dickerson
           </a>
         </span>
