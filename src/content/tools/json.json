@@ -1,0 +1,12 @@
+{
+  "id": "json",
+  "title": "JSON Formatter",
+  "name": "JSON FORMATTER",
+  "index": "02",
+  "label": "JSON_LAB",
+  "hint": "format & validate",
+  "desc": "Pretty-print, minify or validate JSON with clear line and column errors.",
+  "accent": "var(--cyan)",
+  "glow": "var(--glow-cyan-md)",
+  "keywords": "json pretty print lint"
+}

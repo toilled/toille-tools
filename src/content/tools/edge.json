@@ -1,0 +1,12 @@
+{
+  "id": "edge",
+  "title": "Edge Latency Probe",
+  "name": "EDGE LATENCY PROBE",
+  "index": "05",
+  "label": "EDGE_LAB",
+  "hint": "POP & TTFB benchmark",
+  "desc": "Benchmark real-time edge response latency, TTFB, and network jitter from your location.",
+  "accent": "var(--cyan)",
+  "glow": "var(--glow-cyan-md)",
+  "keywords": "edge probe benchmark latency ttfb cloudflare"
+}

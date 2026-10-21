@@ -1,0 +1,12 @@
+{
+  "id": "colour",
+  "title": "Colour Converter",
+  "name": "COLOUR CONVERTER",
+  "index": "04",
+  "label": "COLOUR_LAB",
+  "hint": "hex rgb hsl",
+  "desc": "Convert between HEX, rgb() and hsl(), with a live swatch preview.",
+  "accent": "var(--yellow)",
+  "glow": "var(--glow-yellow-sm)",
+  "keywords": "colour hex rgb hsl swatch"
+}

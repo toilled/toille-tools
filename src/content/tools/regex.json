@@ -1,0 +1,12 @@
+{
+  "id": "regex",
+  "title": "Regex Tester",
+  "name": "REGEX TESTER",
+  "index": "03",
+  "label": "REGEX_LAB",
+  "hint": "live match highlights",
+  "desc": "Build and debug regular expressions with live match highlighting.",
+  "accent": "var(--pink)",
+  "glow": "var(--glow-pink-lg)",
+  "keywords": "regex regexp pattern groups"
+}

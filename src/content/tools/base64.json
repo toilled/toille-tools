@@ -1,0 +1,12 @@
+{
+  "id": "base64",
+  "title": "Base64 & URL Converter",
+  "name": "BASE64 & URL ENCODER",
+  "index": "06",
+  "label": "BASE64_LAB",
+  "hint": "encode & decode",
+  "desc": "UTF-8 compliant Base64 and URL encoding/decoding utilities.",
+  "accent": "var(--pink)",
+  "glow": "var(--glow-pink-lg)",
+  "keywords": "base64 btoa atob url encode decode"
+}

@@ -1,0 +1,53 @@
+.swatch {
+  height: 140px;
+  border: 1px solid var(--line);
+  clip-path: var(--clip-sm);
+  box-shadow: 0 0 22px -6px var(--tool-accent);
+}
+
+.tool-sub-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 0.4rem;
+}
+
+.swatch-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.swatch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.swatch-row span {
+  flex: 0 0 48px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.swatch-row code {
+  flex: 1;
+  word-break: break-all;
+  color: var(--text);
+}
+
+.swatch-row .tool-btn {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+}
+
+.swatch-color-picker {
+  width: 48px;
+  height: 38px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  background: var(--code-bg);
+  cursor: pointer;
+}
